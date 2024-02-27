@@ -1,2 +1,2 @@
-# Web_programing
-This repository for course Web (front-end) програмування
+# Web (front-end) програмування
+Репозиторій Долинка Володимира Тарасовича
