@@ -1,119 +1,51 @@
-class Square {
-    constructor(a) {
-        this.a = a;
-    }
-
-    static help() {
-        console.log("Square is a geometric figure with all sides equal.");
-    }
-
-    length() {
-        return this.a * 4;
-    }
-
-    square() {
-        return this.a ** 2;
-    }
-
-    info() {
-        console.log(`Square:
-        - Length of all sides: ${this.a}
-        - Sum of lengths of all sides: ${this.length()}
-        - Area: ${this.square()}`);
-    }
+// 1.2.4
+function Triangular(a = 3, b = 4, c = 5) {
+    return { a, b, c };
 }
 
-class Rectangle extends Square {
-    constructor(a, b) {
-        super(a);
-        this.b = b;
-    }
+const defaultTriangle = Triangular();
+const triangle1 = Triangular(6, 8, 10);
+const triangle2 = Triangular(7, 24, 25);
 
-    static help() {
-        console.log("Rectangle is a geometric figure with opposite sides equal and all angles right.");
-    }
+console.log(defaultTriangle);
+console.log(triangle1);
+console.log(triangle2);
 
-    length() {
-        return (this.a + this.b) * 2;
-    }
-
-    square() {
-        return this.a * this.b;
-    }
-
-    info() {
-        console.log(`Rectangle:
-        - Length: ${this.a}
-        - Width: ${this.b}
-        - Sum of lengths of all sides: ${this.length()}
-        - Area: ${this.square()}`);
-    }
+// 1.2.5
+function PiMultiplier(number) {
+    return () => Math.PI * number;
 }
 
-class Rhombus extends Square {
-    constructor(a, alpha, beta) {
-        super(a);
-        this.alpha = alpha;
-        this.beta = beta;
-    }
+// 1.2.6
+const multiplyBy2Pi = PiMultiplier(2);
+const multiplyBy1_5Pi = PiMultiplier(1.5);
+const divideBy2Pi = PiMultiplier(0.5);
 
-    static help() {
-        console.log("Rhombus is a geometric figure with all sides equal and opposite angles equal.");
-    }
+console.log(multiplyBy2Pi());
+console.log(multiplyBy1_5Pi());
+console.log(divideBy2Pi());
 
-    length() {
-        return this.a * 4;
-    }
-
-    square() {
-        return (this.a ** 2) * Math.sin(Math.PI * this.alpha / 180);
-    }
-
-    info() {
-        console.log(`Rhombus:
-        - Side length: ${this.a}
-        - Obtuse angle: ${this.alpha} degrees
-        - Acute angle: ${this.beta} degrees
-        - Sum of lengths of all sides: ${this.length()}
-        - Area: ${this.square()}`);
-    }
+// 1.2.7
+function Painter(color) {
+    return (obj) => {
+        if (obj.type !== undefined) {
+            console.log(`Color: ${color}, Type: ${obj.type}`);
+        } else {
+            console.log("No 'type' property occurred!");
+        }
+    };
 }
 
-class Parallelogram extends Rectangle {
-    constructor(a, b, alpha, beta) {
-        super(a, b);
-        this.alpha = alpha;
-        this.beta = beta;
-    }
+// 1.2.8
+const PaintBlue = Painter('blue');
+const PaintRed = Painter('red');
+const PaintYellow = Painter('yellow');
 
-    static help() {
-        console.log("Parallelogram is a geometric figure with opposite sides parallel and equal opposite angles.");
-    }
+// 1.2.9
+const object1 = { maxSpeed: 280 };
+const object2 = { type: 'Truck', maxSpeed: 180 };
+const object3 = { type: 'Sportcar', avgSpeed: 90, color: 'purple' };
 
-    info() {
-        console.log(`Parallelogram:
-        - Length: ${this.a}
-        - Width: ${this.b}
-        - Obtuse angle: ${this.alpha} degrees
-        - Acute angle: ${this.beta} degrees
-        - Sum of lengths of all sides: ${this.length()}
-        - Area: ${this.square()}`);
-    }
-}
-
-Square.help();
-Rectangle.help();
-Rhombus.help();
-Parallelogram.help();
-
-const squareObj = new Square(5);
-squareObj.info();
-
-const rectangleObj = new Rectangle(4, 6);
-rectangleObj.info();
-
-const rhombusObj = new Rhombus(7, 60, 120);
-rhombusObj.info();
-
-const parallelogramObj = new Parallelogram(5, 8, 70, 110);
-parallelogramObj.info();
+PaintBlue(object1);
+PaintRed(object2);
+PaintYellow(object3);
