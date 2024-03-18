@@ -1,78 +1,125 @@
-var car1 = new Object();
-
-car1.color = "Red";
-car1.maxSpeed = 200;
-car1.driver = new Object();
-
-car1.driver.name = "John Doe";
-car1.driver.category = "C";
-car1.driver.personalLimitations = "No driving at night";
-
-car1.tuning = true;
-car1.numberOfAccidents = 0;
-
-car1.drive = function() {
-    console.log("I am not driving at night");
-};
-
-car1.drive();
-// ===============================
-var car2 = {
-    color: "Blue",
-    maxSpeed: 180,
-    driver: {
-        name: "Jane Smith",
-        category: "B",
-        personalLimitations: null
-    },
-    tuning: false,
-    numberOfAccidents: 2,
-    
-    drive: function() {
-        console.log("I can drive anytime");
+// Клас квадрата
+class Square {
+    constructor(a) {
+        this.a = a;
     }
-};
 
-car2.drive();
-// ================================
-function Truck(color, weight, avgSpeed, brand, model) {
-    this.color = color;
-    this.weight = weight;
-    this.avgSpeed = avgSpeed;
-    this.brand = brand;
-    this.model = model;
+    static help() {
+        console.log("Square is a geometric figure with all sides equal.");
+    }
+
+    length() {
+        return this.a * 4;
+    }
+
+    square() {
+        return this.a ** 2;
+    }
+
+    info() {
+        console.log(`Square:
+        - Length of all sides: ${this.a}
+        - Sum of lengths of all sides: ${this.length()}
+        - Area: ${this.square()}`);
+    }
 }
 
-Truck.prototype.AssignDriver = function(name, nightDriving, experience) {
-    this.driver = {
-        name: name,
-        nightDriving: nightDriving,
-        experience: experience
-    };
-};
-
-Truck.prototype.trip = function() {
-    if (!this.driver) {
-        console.log("No driver assigned");
-    } else {
-        var drivingStatus = this.driver.nightDriving ? "drives at night" : "does not drive at night";
-        console.log(`Driver ${this.driver.name} ${drivingStatus} and has ${this.driver.experience} years of experience`);
+// Клас прямокутника
+class Rectangle extends Square {
+    constructor(a, b) {
+        super(a);
+        this.b = b;
     }
-};
 
-var truck1 = new Truck("Red", 5000, 60, "Volvo", "XC90");
+    static help() {
+        console.log("Rectangle is a geometric figure with opposite sides equal and all angles right.");
+    }
 
-truck1.AssignDriver("John Doe", true, 10);
+    length() {
+        return (this.a + this.b) * 2;
+    }
 
-console.log("Trip for truck1:");
-truck1.trip();
+    square() {
+        return this.a * this.b;
+    }
 
-var truck2 = new Truck("Blue", 6000, 70, "MAN", "TGS");
+    info() {
+        console.log(`Rectangle:
+        - Length: ${this.a}
+        - Width: ${this.b}
+        - Sum of lengths of all sides: ${this.length()}
+        - Area: ${this.square()}`);
+    }
+}
 
-truck2.AssignDriver("Jane Smith", false, 5);
+// Клас ромба
+class Rhombus extends Square {
+    constructor(a, alpha, beta) {
+        super(a);
+        this.alpha = alpha;
+        this.beta = beta;
+    }
 
-console.log("\nTrip for truck2:");
-truck2.trip();
-// =================================
+    static help() {
+        console.log("Rhombus is a geometric figure with all sides equal and opposite angles equal.");
+    }
 
+    length() {
+        return this.a * 4;
+    }
 
+    square() {
+        return (this.a ** 2) * Math.sin(Math.PI * this.alpha / 180);
+    }
+
+    info() {
+        console.log(`Rhombus:
+        - Side length: ${this.a}
+        - Obtuse angle: ${this.alpha} degrees
+        - Acute angle: ${this.beta} degrees
+        - Sum of lengths of all sides: ${this.length()}
+        - Area: ${this.square()}`);
+    }
+}
+
+// Клас паралелограма
+class Parallelogram extends Rectangle {
+    constructor(a, b, alpha, beta) {
+        super(a, b);
+        this.alpha = alpha;
+        this.beta = beta;
+    }
+
+    static help() {
+        console.log("Parallelogram is a geometric figure with opposite sides parallel and equal opposite angles.");
+    }
+
+    info() {
+        console.log(`Parallelogram:
+        - Length: ${this.a}
+        - Width: ${this.b}
+        - Obtuse angle: ${this.alpha} degrees
+        - Acute angle: ${this.beta} degrees
+        - Sum of lengths of all sides: ${this.length()}
+        - Area: ${this.square()}`);
+    }
+}
+
+// Виклики статичного методу help для кожного класу
+Square.help();
+Rectangle.help();
+Rhombus.help();
+Parallelogram.help();
+
+// Створення об'єктів та виклик методу info
+const squareObj = new Square(5);
+squareObj.info();
+
+const rectangleObj = new Rectangle(4, 6);
+rectangleObj.info();
+
+const rhombusObj = new Rhombus(7, 60, 120);
+rhombusObj.info();
+
+const parallelogramObj = new Parallelogram(5, 8, 70, 110);
+parallelogramObj.info();
