@@ -1,4 +1,3 @@
-// Клас квадрата
 class Square {
     constructor(a) {
         this.a = a;
@@ -24,7 +23,6 @@ class Square {
     }
 }
 
-// Клас прямокутника
 class Rectangle extends Square {
     constructor(a, b) {
         super(a);
@@ -52,7 +50,6 @@ class Rectangle extends Square {
     }
 }
 
-// Клас ромба
 class Rhombus extends Square {
     constructor(a, alpha, beta) {
         super(a);
@@ -82,7 +79,6 @@ class Rhombus extends Square {
     }
 }
 
-// Клас паралелограма
 class Parallelogram extends Rectangle {
     constructor(a, b, alpha, beta) {
         super(a, b);
@@ -105,13 +101,11 @@ class Parallelogram extends Rectangle {
     }
 }
 
-// Виклики статичного методу help для кожного класу
 Square.help();
 Rectangle.help();
 Rhombus.help();
 Parallelogram.help();
 
-// Створення об'єктів та виклик методу info
 const squareObj = new Square(5);
 squareObj.info();
 
